@@ -1,0 +1,1461 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Het bouwen van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/nl-pam-aspnet-juin-2010/de-toepassing-simupaie---versie-1---aspnet.html">
+      
+      
+        <link rel="prev" href="de-casestudy.html">
+      
+      
+        <link rel="next" href="de-applicatie-atie-simupaie---versie-2---ajax--aspnet.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>4. De toepassing [SimuPaie] – versie 1 – ASP.NET - Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-de-toepassing-simupaie-versie-1-aspnet" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate" class="md-header__button md-logo" aria-label="Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. De toepassing [SimuPaie] – versie 1 – ASP.NET
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar donkere modus"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar donkere modus" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar lichte modus"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar lichte modus" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/nl-pam-aspnet-juin-2010" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate" class="md-nav__button md-logo" aria-label="Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/nl-pam-aspnet-juin-2010" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welkom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inleiding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Inleiding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="een-korte-inleiding-tot-aspnet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Een korte inleiding tot ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-casestudy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. De casestudy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. De toepassing [SimuPaie] – versie 1 – ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="de-toepassing-simupaie---versie-1---aspnet.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. De toepassing [SimuPaie] – versie 1 – ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-het-visual-web-developer-2008-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Het Visual Web Developer 2008-project
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2. Het Visual Web Developer 2008-project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#421-het-formulier-defaultaspx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1. Het formulier [Default.aspx]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#422-controle-van-de-invoer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2. Controle van de invoer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#423-de-entiteiten-van-de-applicatie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.3. De entiteiten van de applicatie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#424-configuratie-van-de-applicatie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.4. Configuratie van de applicatie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#425-initialisatie-van-de-applicatie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.5. Initialisatie van de applicatie
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-de-gebeurtenissen-van-het-formulier-defaultaspx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. De gebeurtenissen van het formulier [Default.aspx]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3. De gebeurtenissen van het formulier [Default.aspx]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#431-de-procedure-page_load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.1. De procedure [Page_Load]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#432-de-salarisberekening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.2. De salarisberekening
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-atie-simupaie---versie-2---ajax--aspnet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. De applicatie atie [SimuPaie] – versie 2 – AJAX / ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inleiding-tot-orm-nhibernate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Inleiding tot ORM NHibernate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-3---drielaagse-architectuur-met-nhibernate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. De applicatie [SimuPaie] – versie 3 – drielaagse architectuur met NHibernate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-simupaie-applicatie---versie-4---aspnet--meerdere-weergaven--een-pagina.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. De [SimuPaie]-applicatie – versie 4 – ASP.NET / meerdere weergaven / één pagina
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-5---aspnet--webservice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. De applicatie [SimuPaie] – versie 5 – ASP.NET / webservice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-6---client-aspnet-van-een-webservice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. De applicatie [SimuPaie] – versie 6 – client ASP.NET van een webservice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-7---aspnet--meerdere-weergaven--meerdere-paginas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. De applicatie [SimuPaie] – versie 7 – ASP.NET / meerdere weergaven / meerdere pagina’s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-8---client-aspnet-van-een-webservice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. De applicatie [SimuPaie] – versie 8 – client ASP.NET van een webservice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-9---spring-integratie--nhibernate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. De applicatie [SimuPaie] – versie 9 – Spring-integratie / NHibernate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-10---flex-client-van-een-webservice-aspnet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. De applicatie [SimuPaie] – versie 10 – Flex-client van een webservice ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span id="pam-v1" name="pam-v1" class="odt-bookmark-anchor"></span></p>
+<h1 id="4-de-toepassing-simupaie-versie-1-aspnet">4. <span style="color: #365f91"><strong>De toepassing [SimuPaie] –</strong> <strong>versie 1 – ASP.NET</strong></span></h1>
+<h2 id="41-introduction">4.1. <span style="color: #4f81bd">Introduction</span></h2>
+<p>We willen een applicatie .NET schrijven waarmee een gebruiker simulaties kan uitvoeren voor de loonberekening van de kinderopvangmedewerkers van de vereniging „Maison de la petite enfance“ in een gemeente.</p>
+<p>De<span id="formulaire-version1" name="formulaire-version1" class="odt-bookmark-anchor"></span> loonberekeningsformulier ASP.NET ziet er als volgt uit:</p>
+<p><img src="images/100000000000020F000002CD27C5E04B.png" width="316" height="430" style="width:8.37cm;height:11.381cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000020F000002CD27C5E04B.png" /></p>
+<p>De applicatie ASP.NET zal de volgende architectuur hebben:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000003CE00000177F771384D.png" width="487" height="188" style="display:inline-block; margin:4px;width:12.885cm;height:4.962cm;" class="odt-zoomable" data-zoom-src="images/10000000000003CE00000177F771384D.png" /></td></tr></table>
+
+<ul>
+  <li>Bij de eerste aanvraag aan de applicatie wordt een object van het type [Global], afgeleid van het type [System.Web.HttpApplication], geïnstantieerd. Dit object zal het configuratiebestand [web.config] van de webapplicatie verwerken en bepaalde gegevens uit de database in de cache opslaan (bewerking 0 hierboven). 
+  </li>
+  <li>Bij het eerste verzoek (stap 1) aan de pagina [Default.aspx], de enige pagina van de applicatie, wordt de gebeurtenis [Load] verwerkt. Hierin wordt het vullen van de keuzelijst met medewerkers afgehandeld. De gegevens die nodig zijn voor de keuzelijst worden opgevraagd bij het object [Global], dat deze in de cache heeft opgeslagen. Dit is stap 2 hierboven. Stap 4 stuurt de aldus geïnitialiseerde pagina naar de gebruiker.
+  </li>
+  <li>Bij het aanvragen van de salarisberekening (bewerking 1) op de pagina [Default.aspx] wordt de gebeurtenis [Load] opnieuw verwerkt. Er gebeurt niets, omdat het om een verzoek van het type POST gaat en de handler [Pam_Load] zo is geschreven dat hij in dit geval niets doet (gebruik van de booleaanse waarde <i>IsPostBack</i>). Nadat de gebeurtenis [Load] is verwerkt, wordt vervolgens de gebeurtenis [Click] op de knop [Salaire] verwerkt. Deze heeft gegevens nodig die niet in de cache van [Global] zijn opgeslagen. Daarom vraagt de gebeurtenishandler deze op bij de database. Dit is stap 3 hierboven. Vervolgens wordt het salaris berekend en stuurt stap 4 de resultaten naar de gebruiker.
+  </li>
+</ul>
+
+<h2 id="42-het-visual-web-developer-2008-project">4.2. <span style="color: #4f81bd">Het Visual Web Developer 2008-project</span></h2>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005FD0000015BC94819DA.png" width="680" height="154" style="display:inline-block; margin:4px;width:17.997cm;height:4.073cm;" class="odt-zoomable" data-zoom-src="images/10000000000005FD0000015BC94819DA.png" /></td></tr></table>
+
+<ul>
+  <li>in [1], maken we een nieuw project aan
+  </li>
+  <li>in [2], van het type [Web / Application Web ASP.NET]
+  </li>
+  <li>in [3], geef je het project een naam
+  </li>
+  <li>in [4], wordt de naam gespecificeerd en in [5] de locatie. Er wordt een map [c:\temp\pam-aspnet\pam-v1-adonet] aangemaakt voor het project.
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000044A000001734FDEDD4D.png" width="549" height="186" style="display:inline-block; margin:4px;width:14.526cm;height:4.909cm;" class="odt-zoomable" data-zoom-src="images/100000000000044A000001734FDEDD4D.png" /></td></tr></table>
+
+<ul>
+  <li>in [5], het Visual Web Developer-project
+  </li>
+  <li>in [6], de projecteigenschappen (rechtsklikken op het project / Eigenschappen / Toepassing). 
+  </li>
+  <li>in [7], de naam van de assembly die bij het genereren van het project wordt geproduceerd
+  </li>
+  <li>in [8], de standaardnaamruimte die we willen gebruiken voor de klassen van het project. De klasse [_Default], gedefinieerd in de bestanden [Default.aspx.cs] en [Default.aspx.designer.cs], is aangemaakt in de naamruimte [pam_v1_adonet], afgeleid van de projectnaam. Deze naamruimte kan rechtstreeks in de code van deze twee bestanden worden gewijzigd:
+  </li>
+</ul>
+
+<p>[Default.aspx.cs]</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> System;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">....</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> <span style="font-weight:bold;color:#ff0000">pam_v1</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">public</span> <span style="color:#0000ff">partial</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">_Default</span> : System.Web.UI.<span style="color:#2b91af">Page</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+</code></pre></div>
+
+<p>[Default.aspx.designer.cs]</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content">//------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// &lt;automatisch gegenereerd&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">//      Deze code is door een tool gegenereerd.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">//      Runtime-versie: 2.0.50727.3603</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">//</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">//      Wijzigingen in dit bestand kunnen tot onjuist gedrag leiden en gaan verloren als</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">//      de code opnieuw wordt gegenereerd.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// &lt;/auto-generated&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">//------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> <span style="font-weight:bold;color:#ff0000">pam_v1</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">partial</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">_Default</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">.........</span></span>
+</code></pre></div>
+
+<p>De opmaak van het bestand [Default.aspx] moet ook worden aangepast:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000EB000000A0CB7852B2.png" width="164" height="112" style="display:inline-block; margin:4px;width:4.35cm;height:2.96cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB000000A0CB7852B2.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
+
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;%<span style="color:#0000ff">@</span> <span style="color:#a31515">Page</span> <span style="color:#ff0000">Language</span><span style="color:#0000ff">=&quot;C#&quot;</span> <span style="color:#ff0000">AutoEventWireup</span><span style="color:#0000ff">=&quot;true&quot;</span> <span style="color:#ff0000">CodeBehind</span><span style="color:#0000ff">=&quot;Default.aspx.cs&quot;</span> <span style="color:#ff0000">Inherits</span><span style="color:#0000ff">=&quot;</span><span style="font-weight:bold;color:#ff0000">pam_v1</span><span style="color:#0000ff">._Default&quot;</span> %&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+</code></pre></div>
+
+<p>Het bovenstaande attribuut <em>Inherits</em> verwijst naar de klasse die is gedefinieerd in de bestanden [Default.aspx.cs] en [Default.aspx.designer.cs]. Daarin wordt de naamruimte <em>pam_v1</em> gebruikt.</p>
+<p><span id="formulaire-v1" name="formulaire-v1" class="odt-bookmark-anchor"></span>
+<span id="pam-v3-default-aspx11" name="pam-v3-default-aspx11" class="odt-bookmark-anchor"></span></p>
+<h3 id="421-het-formulier-defaultaspx">4.2.1. <span style="color: #4f81bd">Het formulier [Default.aspx]</span></h3>
+<p>Het uiterlijk van het formulier [Default.aspx]<span id="pam-v3-default-aspx1" name="pam-v3-default-aspx1" class="odt-bookmark-anchor"></span> is als volgt:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000036F0000041B98506F69.png" width="440" height="526" style="display:inline-block; margin:4px;width:11.629cm;height:13.905cm;" class="odt-zoomable" data-zoom-src="images/100000000000036F0000041B98506F69.png" /></td></tr></table>
+
+<p>De componenten zijn als volgt:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Nr.</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Type</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Naam</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Functie</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">DropDownList</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">ComboBoxEmployes</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Bevat de lijst met namen van de medewerkers</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">TextBox</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">TextBoxHeures</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Aantal gewerkte uren – werkelijk aantal</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>3
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">TextBox</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">TextBoxJours</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Aantal gewerkte dagen – geheel getal</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>4
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Knop</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">ButtonSalaire</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Vraag de salarisberekening aan</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>5
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">TextBox</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">TextBoxErreur</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Informatiebericht voor de gebruiker</div><div style="margin:0 0 0.5em 0"><i>ReadOnly=true</i>, <i>TextMode=MultiLine</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>6
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelNom</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Naam van de in (1) geselecteerde medewerker</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>7
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelPrénom</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Voornaam van de in (1) geselecteerde medewerker</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>8
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelAdresse</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Adres</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>9
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelVille</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Stad</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>10
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelCP</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Postcode</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>11
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelIndice</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Index</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>12
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelCSGRDS</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Premiepercentage CSGRDS</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>13
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelCSGD</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Premiepercentage CSGD</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>14
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelRetraite</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Pensioenpremiepercentage</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>15
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelSS</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Premiepercentage sociale zekerheid</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>16
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelSH</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Basisuurloon voor de in (11) aangegeven index</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>17
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelEJ</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Dagvergoeding voor de in (11) vermelde index</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>18
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelRJ</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Dagvergoeding voor maaltijden voor de in (11) vermelde index</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>19
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelCongés</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Toepasselijk percentage van de vergoeding voor betaald verlof op het basisloon</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>20
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelSB</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Bedrag van het basisloon</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>21
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelCS</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Te betalen bedrag aan sociale premies</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>22
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelIE</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Bedrag van de onderhoudsvergoedingen voor het opgevangen kind</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>23
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelIR</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Bedrag van de maaltijdvergoedingen voor het kind in de opvang</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>24
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Label</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">LabelSN</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Nettoloon dat aan de werknemer moet worden uitbetaald</div></td></tr></table>
+
+<p>Het formulier bevat bovendien twee velden van het type [Panel]:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>PanelErreurs
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">bevat de component (5) <i>TextBoxErreur</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>PanelSalaire
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">bevat de componenten (6) tot en met (24)</div></td></tr></table>
+
+<p>Een component van het type [Panel] kan programmatisch al dan niet zichtbaar worden gemaakt via de booleaanse eigenschap <em>[Panel].Visible</em>.</p>
+<h3 id="422-controle-van-de-invoer">4.2.2. <span style="color: #4f81bd">Controle van de invoer</span></h3>
+<p>Om een salaris te berekenen, doet de gebruiker het volgende:</p>
+<ul>
+  <li>een werknemer selecteren in [1]
+  </li>
+  <li>voert het aantal gewerkte uren in in [2]. Dit getal kan een decimaal getal zijn, zoals 2,5 voor 2 uur en 30 minuten.
+  </li>
+  <li>voert het aantal gewerkte dagen in via [3]. Dit getal is een geheel getal.
+  </li>
+  <li>vraag het salaris op met de knop [4]
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000035D000001191D426465.png" width="431" height="141" style="display:inline-block; margin:4px;width:11.391cm;height:3.718cm;" class="odt-zoomable" data-zoom-src="images/100000000000035D000001191D426465.png" /></td></tr></table>
+
+<p>Wanneer de gebruiker onjuiste gegevens invoert in [2] en [3], worden deze gecontroleerd zodra de gebruiker van invoerveld wisselt. Zo is de onderstaande schermafbeelding gemaakt nog voordat de gebruiker op de knop [Salaire] klikte:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000003A100000117863BBD44.png" width="465" height="140" style="display:inline-block; margin:4px;width:12.291cm;height:3.692cm;" class="odt-zoomable" data-zoom-src="images/10000000000003A100000117863BBD44.png" /></td></tr></table>
+
+<p>Er zijn twee voorwaarden nodig om het bovenstaande gedrag te verkrijgen:</p>
+<ul>
+  <li>de validatiecomponenten moeten de eigenschap <i>EnableClientScript </i>op ‘waar’ hebben staan:
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000D20000007F5CA4D367.png" width="147" height="89" style="display:inline-block; margin:4px;width:3.889cm;height:2.35cm;" class="odt-zoomable" data-zoom-src="images/10000000000000D20000007F5CA4D367.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
+
+<ul>
+  <li>de browser die de pagina weergeeft, moet in staat zijn om de in een pagina ingebedde JavaScript-code uit te voeren HTML. 
+  </li>
+</ul>
+
+<p>Als de browser van de klant de geldigheid van de gegevens niet zelf controleert, worden deze pas gecontroleerd wanneer de browser de formuliergegevens naar de server verstuurt. Het is dan de code op de server die het verzoek van de browser verwerkt, die de geldigheid van de gegevens controleert. We wijzen erop dat deze controle altijd moet worden uitgevoerd, zelfs als de pagina die in de browser van de klant wordt weergegeven JavaScript-code bevat die dezelfde controle uitvoert. De server kan er namelijk niet zeker van zijn dat het verzoek POST dat aan hem wordt gedaan daadwerkelijk afkomstig is van deze pagina en dat de gegevens dus al zijn gecontroleerd.</p>
+<p>De lijst met validators is als volgt:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Nr.</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Type</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Naam</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Rol</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>25
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">RequiredFieldValidator</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">RequiredFieldValidatorHeures</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">controleert of het veld [2] [TextBoxHeures] niet leeg is</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>26
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">RangeValidator</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">RangeValidatorHeures</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">controleert of het veld [2] [TextBoxHeures] een reëel getal is in het interval [0, 200]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>27
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">RequiredFieldValidator</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">RequiredFieldValidatorJours</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">controleert of het veld [3] [TextBoxJours] niet leeg is</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>28
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">RangeValidator</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">RangeValidatorJours</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">controleert of het veld [3] [TextBoxJours] een geheel getal is binnen het interval [0,31]</div></td></tr></table>
+
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Te doen</strong>: de pagina [Default.aspx] opbouwen. Eerst plaatsen we de twee containers [PanelErreurs] en [PanelSalaire], zodat we er vervolgens de componenten in kunnen plaatsen die ze moeten bevatten.</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h3 id="423-de-entiteiten-van-de-applicatie">4.2.3. <span style="color: #4f81bd">De entiteiten van de applicatie</span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000017D000001A5B73A4907.png" width="191" height="211" style="display:inline-block; margin:4px;width:5.041cm;height:5.57cm;" class="odt-zoomable" data-zoom-src="images/100000000000017D000001A5B73A4907.png" /></td></tr></table>
+
+<p>Zodra de rijen uit de tabellen [cotisations], [employes] en [indemnites] zijn ingelezen, worden ze ondergebracht in objecten van het type [Cotisations], [Employe] en [Indemnites], die als volgt zijn gedefinieerd:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> Pam.Entites</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Cotisations</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // automatische eigenschappen</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> CsgRds { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> Csgd { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> Secu { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> Retraite { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // constructors</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> Cotisations()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> Cotisations(<span style="color:#0000ff">double</span> csgRds, <span style="color:#0000ff">double</span> csgd, <span style="color:#0000ff">double</span> secu, <span style="color:#0000ff">double</span> retraite)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      CsgRds = csgRds;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Csgd = csgd;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Secu = secu;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Retraite = retraite;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // ToString</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">override</span> <span style="color:#0000ff">string</span> ToString()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#0000ff">return</span> <span style="color:#0000ff">string</span>.Format(<span style="color:#a31515">&quot;[{0},{1},{2},{3}]&quot;</span>, CsgRds, Csgd, Secu, Retraite);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> Pam.Entites</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Employe</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // automatische eigenschappen</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">string</span> SS { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">string</span> Nom { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">string</span> Prenom { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">string</span> Adresse { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">private</span> <span style="color:#0000ff">string</span> Ville { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">private</span> <span style="color:#0000ff">string</span> CodePostal { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">private</span> <span style="color:#0000ff">int</span> Indice { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // fabrikanten</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> Employe()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> Employe(<span style="color:#0000ff">string</span> ss, <span style="color:#0000ff">string</span> nom, <span style="color:#0000ff">string</span> prenom, <span style="color:#0000ff">string</span> adresse, <span style="color:#0000ff">string</span> codePostal, <span style="color:#0000ff">string</span> ville, <span style="color:#0000ff">int</span> indice)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      SS = ss;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Nom = nom;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Prenom = prenom;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Adresse = adresse;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      CodePostal = codePostal;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Ville = ville;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Indice = indice;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // ToString</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">override</span> <span style="color:#0000ff">string</span> ToString()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#0000ff">return</span> <span style="color:#0000ff">string</span>.Format(<span style="color:#a31515">&quot;[{0},{1},{2},{3},{4},{5},{6}]&quot;</span>, SS, Nom, Prenom, Adresse, Ville, CodePostal, Indice);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> Pam.Entites</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Indemnites</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // automatische eigenschappen</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">int</span> Indice { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> BaseHeure { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> EntretienJour { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> RepasJour { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> IndemnitesCP { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // fabrikanten</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> Indemnites()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> Indemnites(<span style="color:#0000ff">int</span> indice, <span style="color:#0000ff">double</span> baseHeure, <span style="color:#0000ff">double</span> entretienJour, <span style="color:#0000ff">double</span> repasJour, <span style="color:#0000ff">double</span> indemnitesCP)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Indice = indice;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      BaseHeure = baseHeure;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      EntretienJour = entretienJour;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      RepasJour = repasJour;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      IndemnitesCP = indemnitesCP;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // identiteit</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">override</span> <span style="color:#0000ff">string</span> ToString()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#0000ff">return</span> <span style="color:#0000ff">string</span>.Format(<span style="color:#a31515">&quot;[{0}, {1}, {2}, {3}, {4}]&quot;</span>, Indice, BaseHeure, EntretienJour, RepasJour, IndemnitesCP);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<h3 id="424-configuratie-van-de-applicatie">4.2.4. <span style="color: #4f81bd">Configuratie van de applicatie</span></h3>
+<p>Het bestand [Web.config] waarmee de applicatie wordt geconfigureerd, ziet er als volgt uit:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">&lt;?</span><span style="color:#a31515">xml</span><span style="color:#0000ff"> </span><span style="color:#ff0000">version</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">1.0</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">encoding</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">utf-8</span>&quot;<span style="color:#0000ff">?&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">&lt;</span><span style="color:#a31515">configuration</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">configSections</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;/</span><span style="color:#a31515">configSections</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add</span><span style="color:#0000ff"> </span><span style="color:#ff0000">name</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">dbpamSqlServer2005</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">connectionString</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">Data Source=.\SQLEXPRESS;AttachDbFilename=C:\data\...\dbpam.mdf;User Id=sa;Password=msde;Connect Timeout=30;</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">providerName</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">System.Data.SqlClient</span>&quot;<span style="color:#0000ff">/&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;/</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">appSettings</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add</span><span style="color:#0000ff"> </span><span style="color:#ff0000">key</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">selectEmploye</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">value</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">select NOM,PRENOM,ADRESSE,VILLE,CODEPOSTAL,INDICE from EMPLOYES where SS=@SS</span>&quot;<span style="color:#0000ff">/&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add</span><span style="color:#0000ff"> </span><span style="color:#ff0000">key</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">selectEmployes</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">value</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">select PRENOM, NOM, SS from EMPLOYES</span>&quot;<span style="color:#0000ff">/&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add</span><span style="color:#0000ff"> </span><span style="color:#ff0000">key</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">selectCotisations</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">value</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">select CSGRDS,CSGD,SECU,RETRAITE from COTISATIONS</span>&quot;<span style="color:#0000ff">/&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add</span><span style="color:#0000ff"> </span><span style="color:#ff0000">key</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">SelectIndemnites</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">value</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">select INDICE,BASEHEURE,ENTRETIENJOUR,REPASJOUR,INDEMNITESCP from INDEMNITES</span>&quot;<span style="color:#0000ff">/&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;/</span><span style="color:#a31515">appSettings</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">system.web</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">&lt;!-- </span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            Définissez compilation debug=&quot;true&quot; pour insérer des symboles </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            de débogage dans la page compilée. Comme ceci </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            affecte les performances, définissez cette valeur à true uniquement </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            lors du développement.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000">--&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">        &lt;</span><span style="color:#a31515">compilation</span><span style="color:#0000ff"> </span><span style="color:#ff0000">debug</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">false</span>&quot;<span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">&lt;/</span><span style="color:#a31515">configuration</span><span style="color:#0000ff">&gt;</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>regel 9: definieert de verbindingsstring met de vorige SQL-server
+  </li>
+  <li>regels 13-16: definiëren de query&#x27;s die door de applicatie worden gebruikt om te voorkomen dat ze hard in de code worden gecodeerd.
+  </li>
+  <li>regel 13: de query SQL wordt geconfigureerd. De notatie van de parameter is specifiek voor de SQL-server.
+  </li>
+</ul>
+
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Te doen</strong>: voer deze parameters in het bestand [Web.config] in. Regel 9 moet worden aangepast aan het daadwerkelijke pad naar de database [dbpam.mdf].</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h3 id="425-initialisatie-van-de-applicatie">4.2.5. <span style="color: #4f81bd">Initialisatie van de applicatie</span></h3>
+<p>Het initialiseren van een ASP.NET-toepassing gebeurt via het bestand [Global.asax.cs]. Dit bestand is als volgt opgebouwd:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005860000025018FECFE7.png" width="680" height="285" style="display:inline-block; margin:4px;width:17.997cm;height:7.534cm;" class="odt-zoomable" data-zoom-src="images/10000000000005860000025018FECFE7.png" /></td></tr></table>
+
+<ul>
+  <li>in [1] wordt een nieuw element aan het project toegevoegd
+  </li>
+  <li>in [2] wordt de globale applicatieklasse toegevoegd, die standaard [Global.asax] heet [3]
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000003BC0000019AB982E5E9.png" width="478" height="205" style="display:inline-block; margin:4px;width:12.647cm;height:5.424cm;" class="odt-zoomable" data-zoom-src="images/10000000000003BC0000019AB982E5E9.png" /></td></tr></table>
+
+<ul>
+  <li>in [4], het bestand [Global.asax] en de bijbehorende klasse [Global.asax.cs]
+  </li>
+  <li>in [5] wordt de opmaak van [Global.asax] weergegeven
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;%<span style="color:#0000ff">@</span> <span style="color:#a31515">Application</span> <span style="color:#ff0000">Codebehind</span><span style="color:#0000ff">=&quot;Global.asax.cs&quot;</span> <span style="color:#ff0000">Inherits</span><span style="color:#0000ff">=&quot;pam_v1.Global&quot;</span> <span style="color:#ff0000">Language</span><span style="color:#0000ff">=&quot;C#&quot;</span> %&gt;</span></span>
+</code></pre></div>
+
+<p>De klasse [pam_v1.Global] wordt gedefinieerd in het bestand [Global.asax.cs]. Voor ons probleem wordt deze als volgt gedefinieerd:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> System;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> System.Collections.Generic;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> System.Configuration;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> System.Data.SqlClient;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Pam.Entites;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> pam_v1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Global</span> : System.Web.<span style="color:#2b91af">HttpApplication</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // --- statische gegevens van de applicatie ---</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#2b91af">Employe</span>[] Employes;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#2b91af">Cotisations</span> Cotisations;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#2b91af">Dictionary</span>&lt;<span style="color:#0000ff">int</span>, <span style="color:#2b91af">Indemnites</span>&gt; Indemnites = <span style="color:#0000ff">new</span> <span style="color:#2b91af">Dictionary</span>&lt;<span style="color:#0000ff">int</span>, <span style="color:#2b91af">Indemnites</span>&gt;();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#0000ff">string</span> Msg = <span style="color:#0000ff">string</span>.Empty;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#0000ff">bool</span> Erreur = <span style="color:#0000ff">false</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#0000ff">string</span> ConnectionString = <span style="color:#0000ff">null</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // opstarten van de applicatie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">void</span> Application_Start(<span style="color:#0000ff">object</span> sender, <span style="color:#2b91af">EventArgs</span> e)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#0000ff">try</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        // aanmelding</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        ConnectionString = ...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">using</span> (<span style="color:#2b91af">SqlConnection</span> connexion = <span style="color:#0000ff">new</span> <span style="color:#2b91af">SqlConnection</span>(ConnectionString))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">          connexion.Open();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">          // de lijst met werknemers wordt opgehaald en in de statische array [Employes] geplaatst</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">          // de premiepercentages worden opgehaald in de statische variabele [Cotisations]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">          // we halen de vergoedingen op uit het statische woordenboek [Indemnites]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">          // het is gelukt</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">          Msg = <span style="color:#a31515">&quot;Base chargée...&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#0000ff">catch</span> (<span style="color:#2b91af">Exception</span> ex)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        // de fout wordt genoteerd</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Msg = <span style="color:#0000ff">string</span>.Format(<span style="color:#a31515">&quot;L&#x27;erreur suivante s&#x27;est produite lors de l&#x27;accès à la base de données : {0}&quot;</span>, ex);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Erreur = <span style="color:#0000ff">true</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>regel 20: de methode [Application_Start] wordt uitgevoerd bij het opstarten van de webapplicatie. Deze wordt slechts één keer uitgevoerd.
+  </li>
+  <li>regels 12-17: openbare en <b>statische</b> velden van de klasse. Een statisch veld wordt gedeeld door alle instanties van de klasse. Als er dus meerdere instanties van de klasse [Global] worden aangemaakt, delen ze allemaal hetzelfde statische veld [Employes], dat toegankelijk is via de referentie [Global.Employes], c.a.d. <i>[NomDeClasse].ChampStatique</i>. [Global] is de naam van een klasse. Het is dus een gegevenstype. Deze naam is willekeurig. De klasse is altijd afgeleid van [System.Web.HttpApplication].
+  </li>
+</ul>
+
+<p>Laten we teruggaan naar onze klasse [Global]. Je kunt je afvragen of het nodig is om de velden ervan <strong>als statisch</strong> te declareren. Het lijkt er namelijk op dat er in sommige gevallen meerdere instanties van de klasse [Global] kunnen bestaan, wat het gerechtvaardigd maakt om de velden die door al deze instanties moeten worden gedeeld, statisch te maken.</p>
+<p>Er bestaat nog een andere manier om gegevens met het bereik „toepassing“ te delen tussen de verschillende pagina’s van een webtoepassing. Zo zou de tabel <em>Employes</em> met medewerkers op de volgende manier kunnen worden opgeslagen in de procedure <em>Application_Start</em>:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">            Application.Add(<span style="color:#a31515">&quot;employes&quot;,E</span>mployes);</span></span>
+</code></pre></div>
+
+<p>[Application] is standaard in elke toepassing ASP.NET een verwijzing naar een instantie van de klasse die wordt gedefinieerd door [Global.asax.cs]. <em>Application</em> is een container waarin objecten van elk type kunnen worden opgeslagen. De array <em>Employes</em> kan vervolgens in de code van een willekeurige pagina van de webapplicatie als volgt worden opgehaald:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">            Employe[] employes=Application.Get[<span style="color:#a31515">&quot;employes&quot;] as E</span>mploye[];</span></span>
+</code></pre></div>
+
+<p>Omdat de container <em>Application</em> objecten van elk type opslaat, krijgen we een type <em>Object</em> terug dat vervolgens moet worden omgezet. Deze methode is nog steeds bruikbaar, maar door gegevens te delen via statische, getypeerde velden van het object [Global] worden typeconversies vermeden en kan de compiler typecontroles uitvoeren die de ontwikkelaar helpen. Dit is de methode die hier zal worden gebruikt.</p>
+<p>De gegevens die door alle gebruikers worden gedeeld, zijn de volgende:</p>
+<ul>
+  <li>regel 12: de array van objecten van het type [Employe] waarin de vereenvoudigde lijst (SS, NOM, PRENOM) van alle werknemers wordt opgeslagen
+  </li>
+  <li>regel 13: het object van het type [Cotisations] waarin de premietarieven worden opgeslagen
+  </li>
+  <li>regel 14: het woordenboek waarin de vergoedingen in verband met de verschillende indexen van de werknemers worden opgeslagen. Het wordt geïndexeerd op basis van de index van de werknemer en de waarden zijn van het type [Indemnites]
+  </li>
+  <li>regel 15: een bericht dat aangeeft hoe de initialisatie is verlopen (succesvol of met een fout)
+  </li>
+  <li>regel 16: een booleaanse waarde die aangeeft of de initialisatie al dan niet met een fout is beëindigd.
+  </li>
+  <li>regel 17: de verbindingsstring naar de database.
+  </li>
+</ul>
+
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Vraag</strong>: vul de code van de klasse [Application_Start] aan.</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h2 id="43-de-gebeurtenissen-van-het-formulier-defaultaspx">4.3. <span style="color: #4f81bd"><strong>De gebeurtenissen van het formulier [Default.aspx]</strong></span></h2>
+<p><span id="pageload-aspnet-v31" name="pageload-aspnet-v31" class="odt-bookmark-anchor"></span></p>
+<h3 id="431-de-procedure-page_load">4.3.1. <span style="color: #4f81bd">De procedure [Page_Load]</span></h3>
+<p>Wanneer het formulier [Default.aspx] wordt geladen, zoekt het in de tabel [Global.Employes] (regel 12) naar de namen van de medewerkers om deze in de keuzelijst [1] te plaatsen:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000003670000014F6B0C9BE4.png" width="436" height="168" style="display:inline-block; margin:4px;width:11.523cm;height:4.433cm;" class="odt-zoomable" data-zoom-src="images/10000000000003670000014F6B0C9BE4.png" /></td></tr></table>
+
+<ul>
+  <li>de keuzelijst [1] is gevuld
+  </li>
+  <li>TextBox [5] geeft aan dat de database correct is ingelezen
+  </li>
+</ul>
+
+<p>Als er initialisatiefouten zijn opgetreden bij het opstarten van de applicatie, wordt dit aangegeven door de codes TextBox en [5]:</p>
+<p><img src="images/10000000000002A3000001354E334A5C.png" width="472" height="216" style="width:12.501cm;height:5.72cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002A3000001354E334A5C.png" /></p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Vraag</strong>: schrijf de procedure [Page_Load] van de webpagina [Default.aspx], die bij het opstarten van de applicatie wordt uitgevoerd en de hierboven beschreven werking garandeert.</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h3 id="432-de-salarisberekening">4.3.2. <span style="color: #4f81bd">De salarisberekening</span></h3>
+<p>Als je op de knop [4] klikt, wordt de handler uitgevoerd:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> ButtonSalaire_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span></span>
+</code></pre></div>
+
+<p>Deze handler controleert eerst of de invoer in [2] en [3] geldig is. Als een van beide onjuist is, wordt de fout gemeld zoals eerder getoond. Zodra de invoer in [2] en [3] is gecontroleerd en geldig is bevonden, moet de applicatie aanvullende gegevens weergeven over de in [1] geselecteerde gebruiker, evenals diens salaris (zie schermafbeelding in paragraaf<a href="#formulaire-version1"><u><span style="color: #0563c1"> 4.1</span></u></a>).</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Vraag</strong>: schrijf de code voor de procedure [ButtonSalaire_Click].</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Deze cursus-tutorial, geschreven door <strong>Serge Tahé</strong>, wordt aan het publiek ter beschikking gesteld onder de voorwaarden van de
+        <em>Creative Commons Naamsvermelding – Geen commercieel gebruik –
+        Gelijk delen 3.0 ongewijzigd</em>.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

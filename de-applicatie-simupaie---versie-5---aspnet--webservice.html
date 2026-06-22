@@ -1,0 +1,1586 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Het bouwen van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/nl-pam-aspnet-juin-2010/de-applicatie-simupaie---versie-5---aspnet--webservice.html">
+      
+      
+        <link rel="prev" href="de-simupaie-applicatie---versie-4---aspnet--meerdere-weergaven--een-pagina.html">
+      
+      
+        <link rel="next" href="de-applicatie-simupaie---versie-6---client-aspnet-van-een-webservice.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>9. De applicatie [SimuPaie] – versie 5 – ASP.NET / webservice - Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#9-de-applicatie-simupaie-versie-5-aspnet-webservice" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate" class="md-header__button md-logo" aria-label="Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              9. De applicatie [SimuPaie] – versie 5 – ASP.NET / webservice
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar donkere modus"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar donkere modus" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar lichte modus"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar lichte modus" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/nl-pam-aspnet-juin-2010" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate" class="md-nav__button md-logo" aria-label="Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ontwikkeling van een drielaagse applicatie met ASP.NET 2.0, C#, Spring.Net en NHibernate
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/nl-pam-aspnet-juin-2010" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welkom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inleiding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Inleiding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="een-korte-inleiding-tot-aspnet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Een korte inleiding tot ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-casestudy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. De casestudy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-toepassing-simupaie---versie-1---aspnet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. De toepassing [SimuPaie] – versie 1 – ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-atie-simupaie---versie-2---ajax--aspnet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. De applicatie atie [SimuPaie] – versie 2 – AJAX / ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inleiding-tot-orm-nhibernate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Inleiding tot ORM NHibernate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-3---drielaagse-architectuur-met-nhibernate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. De applicatie [SimuPaie] – versie 3 – drielaagse architectuur met NHibernate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-simupaie-applicatie---versie-4---aspnet--meerdere-weergaven--een-pagina.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. De [SimuPaie]-applicatie – versie 4 – ASP.NET / meerdere weergaven / één pagina
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. De applicatie [SimuPaie] – versie 5 – ASP.NET / webservice
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="de-applicatie-simupaie---versie-5---aspnet--webservice.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. De applicatie [SimuPaie] – versie 5 – ASP.NET / webservice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#91-de-nieuwe-architectuur-van-de-applicatie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1. De nieuwe architectuur van de applicatie
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#92-het-visual-web-developer-project-van-de-webservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2. Het Visual Web Developer-project van de webservice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#93-het-c-project-van-een-client-nunit-van-de-webservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3. Het C#-project van een client NUnit van de webservice
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-6---client-aspnet-van-een-webservice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. De applicatie [SimuPaie] – versie 6 – client ASP.NET van een webservice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-7---aspnet--meerdere-weergaven--meerdere-paginas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. De applicatie [SimuPaie] – versie 7 – ASP.NET / meerdere weergaven / meerdere pagina’s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-8---client-aspnet-van-een-webservice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. De applicatie [SimuPaie] – versie 8 – client ASP.NET van een webservice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-9---spring-integratie--nhibernate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. De applicatie [SimuPaie] – versie 9 – Spring-integratie / NHibernate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-applicatie-simupaie---versie-10---flex-client-van-een-webservice-aspnet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. De applicatie [SimuPaie] – versie 10 – Flex-client van een webservice ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="9-de-applicatie-simupaie-versie-5-aspnet-webservice">9. <span style="color: #365f91">De applicatie [SimuPaie] – versie 5 – ASP.NET / webservice</span></h1>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Aanbevolen literatuur</strong>: referentie [2], <strong>Inleiding tot C# 2008</strong>, hoofdstuk 10 &quot;<strong>Webservices</strong>&quot;</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h2 id="91-de-nieuwe-architectuur-van-de-applicatie">9.1. <span style="color: #4f81bd"><strong>De nieuwe architectuur van de applicatie</strong></span></h2>
+<p>De gelaagde architectuur van de applicatie <em>Pam</em> is momenteel als volgt:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004BE000000BEF19A80DE.png" width="607" height="95" style="display:inline-block; margin:4px;width:16.06cm;height:2.514cm;" class="odt-zoomable" data-zoom-src="images/10000000000004BE000000BEF19A80DE.png" /></td></tr></table>
+
+<p>We gaan deze als volgt uitbreiden:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000067B000000F635427F8B.png" width="680" height="101" style="display:inline-block; margin:4px;width:17.997cm;height:2.667cm;" class="odt-zoomable" data-zoom-src="images/100000000000067B000000F635427F8B.png" /></td></tr></table>
+
+<p>Terwijl in de vorige architectuur de lagen [web], [metier] en [dao] in dezelfde virtuele machine werden uitgevoerd.NET, zal in de nieuwe architectuur de laag [web] in een andere virtuele machine draaien dan de lagen [metier] en [dao]. Dit is met name het geval als de laag [web] zich op een machine M1 bevindt en de lagen [metier] en [dao] op een machine M2. We hebben hier te maken met een client-serverarchitectuur:</p>
+<ul>
+  <li>de server bestaat uit de lagen [metier] en [dao]. Omdat het een webservice is, heeft deze webserver nr. 2 nodig om te kunnen draaien.
+  </li>
+  <li>De client bestaat uit de laag [web]. Om te kunnen draaien, heeft deze webserver nr. 1 nodig.
+  </li>
+  <li>De client en de server communiceren via het TCP/IP-netwerk met het protocol HTTP / SOAP. Hiervoor moeten twee nieuwe lagen aan de architectuur worden toegevoegd:
+    <ul>
+      <li>de laag [S], die een <b>webservice</b> zal zijn. De webservice ontvangt verzoeken van externe clients en maakt gebruik van de lagen [metier] en [dao] om deze te verwerken. Er zijn talrijke manieren om een TCP/IP-service op te zetten. Het voordeel van <b>de webservice </b>is tweeledig:
+        <ul>
+          <li>hij maakt gebruik van het protocol HTTP, dat door de firewalls van bedrijven en overheidsinstanties wordt doorgelaten
+          </li>
+          <li>het maakt gebruik van een standaard HTTP/SOAP-subprotocol, dat door talrijke ontwikkelingsplatforms wordt geïmplementeerd: .Net, Java, PHP, Flex, ... Zo kan een webservice worden ‘gebruikt’ (dit is de gangbare term) door .Net-, Java-, PHP- en Flex-clients, ...
+          </li>
+        </ul>
+      </li>
+      <li>de [C]-laag, die de <b>client </b>van de externe webservice zal zijn. Deze laag heeft als taak te communiceren met de webservice [S].
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Deze nieuwe architectuur kan zonder al te veel moeite worden afgeleid uit de vorige: </p>
+<ul>
+  <li>de lagen [metier] en [dao] blijven ongewijzigd
+  </li>
+  <li>de laag [web] verandert enigszins, voornamelijk om te verwijzen naar entiteiten zoals <i>Employe </i>en <i>FeuilleSalaire</i>, die entiteiten van de clientlaag [C] zijn geworden. Deze entiteiten zijn vergelijkbaar met die van de lagen [metier] of [dao], maar behoren tot verschillende naamruimten. 
+  </li>
+  <li>De serverlaag [S] is een klasse die de interface <i>IPamMetier </i>van de laag [metier] implementeert. Deze implementatie beperkt zich tot het aanroepen van de overeenkomstige methoden van de laag [metier]. De methoden die door de serverlaag [S] worden geïmplementeerd, worden „blootgesteld” aan externe clients, die deze kunnen aanroepen.
+  </li>
+  <li>De clientlaag [C] wordt gegenereerd door Visual Studio.
+  </li>
+</ul>
+
+<p>De principes van de nieuwe architectuur zijn als volgt:</p>
+<ul>
+  <li>de laag [web] blijft communiceren met de laag [metier] alsof deze lokaal is. Hiervoor implementeert de clientlaag [C] deinterface <i>IPamMetier </i>van de daadwerkelijke laag [metier] en presenteert zich aan de laag [web] als een lokale laag [metier]. Afgezien van het eerder genoemde probleem met de naamruimten, verandert de laag [web] niet. Dat is het voordeel van het werken in lagen. Als we een applicatie met één laag hadden gebouwd, zou deze zeer ingrijpend moeten worden herzien.
+  </li>
+  <li>De clientlaag [C] stuurt, op een voor de laag [web] transparante manier, de verzoeken van deze laag door naar de externe webservice [S]. Deze laag neemt het gehele aspect van de „netwerkcommunicatie“ voor haar rekening. Ze ontvangt een antwoord van de externe webservice, dat ze opmaakt om het aan de laag [web] te leveren in de vorm die deze verwacht.
+  </li>
+  <li>Aan de serverzijde ontvangt de webservice [S] opdrachten van zijn externe clients. Hij verwerkt deze om de methoden van de interface <i>IPamMetier </i>van de laag [metier] aan te roepen. Zodra hij het antwoord van de laag [metier] heeft ontvangen, zet hij dit in de juiste vorm om het via het netwerk door te sturen naar de client [C]. De lagen [metier] en [dao] hoeven niet te worden gewijzigd.
+  </li>
+</ul>
+
+<h2 id="92-het-visual-web-developer-project-van-de-webservice">9.2. <span style="color: #4f81bd">Het Visual Web Developer-project van de webservice</span></h2>
+<p>We maken een nieuw project aan met Visual Web Developer:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000046B0000026E45A89882.png" width="566" height="311" style="display:inline-block; margin:4px;width:14.963cm;height:8.229cm;" class="odt-zoomable" data-zoom-src="images/100000000000046B0000026E45A89882.png" /></td></tr></table>
+
+<ul>
+  <li>in [1] kiezen we voor een webproject in C#
+  </li>
+  <li>in [2] kiezen we &quot;Webservice-toepassing ASP.NET&quot;
+  </li>
+  <li>in [3] geven we het webproject een naam
+  </li>
+  <li>in [4] geven we een locatie op voor dit project
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000025B00000106E6132AC0.png" width="302" height="131" style="display:inline-block; margin:4px;width:7.978cm;height:3.466cm;" class="odt-zoomable" data-zoom-src="images/100000000000025B00000106E6132AC0.png" /></td></tr></table>
+
+<ul>
+  <li>in [1] het gegenereerde project. Dit is een klassiek webproject, met de volgende details:
+    <ul>
+      <li>er is aangegeven dat het project van het type „webservice“ is. Een webservice verstuurt geen webpagina’s HTML naar zijn klanten, maar gegevens in het formaat XML. Daarom is de pagina [Default.aspx], die gewoonlijk wordt gegenereerd, niet gegenereerd.
+      </li>
+    </ul>
+  </li>
+  <li>In [2] is een bestand [Service1.asmx] gegenereerd met de volgende inhoud:
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;%<span style="color:#0000ff">@</span> <span style="color:#a31515">WebService</span> <span style="color:#ff0000">Language</span><span style="color:#0000ff">=&quot;C#&quot;</span> <span style="color:#ff0000">CodeBehind</span><span style="color:#0000ff">=&quot;Service1.asmx.cs&quot;</span> <span style="color:#ff0000">Class</span><span style="color:#0000ff">=&quot;pam_v5_webservice.Service1&quot;</span> %&gt;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>(vervolg)
+    <ul>
+      <li>- de tag <i>WebService </i>geeft aan dat [Service.asmx] een webservice is
+      </li>
+      <li>- het attribuut <i>CodeBehind </i>geeft de locatie van de broncode van deze webservice aan
+      </li>
+      <li>- het attribuut <i>Class </i>geeft de naam aan van de klasse die de webservice in de broncode implementeert
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>De broncode [Service.asmx.cs] van de standaard gegenereerde webservice is als volgt:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> System.Web.Services;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> pam_v5_webservice</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  /// &lt;summary&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  /// Beknopte beschrijving van Service1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  /// &lt;/summary&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  [<span style="color:#2b91af">WebService</span>(Namespace = <span style="color:#a31515">&quot;http://tempuri.org/&quot;</span>)]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  [<span style="color:#2b91af">WebServiceBinding</span>(ConformsTo = <span style="color:#2b91af">WsiProfiles</span>.BasicProfile1_1)]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  [System.ComponentModel.<span style="color:#2b91af">ToolboxItem</span>(<span style="color:#0000ff">false</span>)]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  // Om het aanroepen van deze webservice vanuit een script met behulp van ASP.NET AJAX mogelijk te maken, verwijdert u de commentaartekens uit de volgende regel. </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  // [System.Web.Script.Services.ScriptService]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Service1</span> : System.Web.Services.<span style="color:#2b91af">WebService</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    [<span style="color:#2b91af">WebMethod</span>]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">string</span> HelloWorld()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#0000ff">return</span> <span style="color:#a31515">&quot;Hello World&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>regel 8: de annotatie <i>WebService</i>, waardoor de klasse <i>Service1 </i>uit regel 13 als webservice wordt aangeboden. Een webservice behoort tot een naamruimte om te voorkomen dat twee webservices wereldwijd dezelfde naam hebben. We zullen deze naamruimte later moeten wijzigen.
+  </li>
+  <li>regel 13: de klasse <i>Service1 </i>is afgeleid van de klasse <i>WebService </i>uit het .NET-framework.
+  </li>
+  <li>regel 16: de annotatie <i>WebMethod </i>zorgt ervoor dat de methode met deze annotatie beschikbaar wordt gesteld aan externe clients, die deze vervolgens kunnen aanroepen.
+  </li>
+  <li>regels 17-20: de methode <i>HelloWorld </i>is een demonstratiemethode. We zullen deze later verwijderen. Hiermee kunnen we de eerste tests uitvoeren en kennismaken met de tools van Visual Studio en met enkele zaken die je moet weten over webservices.
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001A7000001676B5A9D50.png" width="212" height="180" style="display:inline-block; margin:4px;width:5.597cm;height:4.75cm;" class="odt-zoomable" data-zoom-src="images/10000000000001A7000001676B5A9D50.png" /></td></tr></table>
+
+<ul>
+  <li>in [1] voeren we de webservice [Service.asmx] uit
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000040500000147CACAFCC9.png" width="515" height="164" style="display:inline-block; margin:4px;width:13.614cm;height:4.327cm;" class="odt-zoomable" data-zoom-src="images/100000000000040500000147CACAFCC9.png" /></td></tr></table>
+
+<ul>
+  <li>VS Web Developer heeft zijn ingebouwde webserver gestart en laat deze luisteren op een willekeurige poort, in dit geval 1599. Vervolgens is de URL [2] opgevraagd bij de webserver. Dit is de URL van een testpagina van de webservice.
+  </li>
+  <li>in [3], een link waarmee het beschrijvingsbestand van de webservice kan worden bekeken. Dit bestand, dat vanwege zijn extensie (.wsdl) WSDL (<b>WebService </b>Description Language) wordt genoemd, is een XML-bestand waarin de door de webservice aangeboden methoden worden beschreven. Aan de hand van dit WSDL-bestand kunnen clients het volgende te weten komen:
+    <ul>
+      <li>de naamruimte van de webservice
+      </li>
+      <li>de lijst met methoden die door de webservice worden aangeboden
+      </li>
+      <li>de parameters die voor elk van deze methoden worden verwacht
+      </li>
+      <li>het antwoord dat door elke methode wordt teruggestuurd
+      </li>
+    </ul>
+  </li>
+  <li>in [4], de enige methode die door de web -service wordt aangeboden.
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000421000002C7D5E7C00C.png" width="529" height="356" style="display:inline-block; margin:4px;width:13.984cm;height:9.407cm;" class="odt-zoomable" data-zoom-src="images/1000000000000421000002C7D5E7C00C.png" /></td></tr></table>
+
+<ul>
+  <li>in [5], de inhoud van het bestand WSDL dat is verkregen via de link [3]. Let op het bestand URL en [6]. Kennis hiervan is noodzakelijk voor klanten van de webservice.
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000575000001922489169F.png" width="680" height="196" style="display:inline-block; margin:4px;width:17.997cm;height:5.177cm;" class="odt-zoomable" data-zoom-src="images/1000000000000575000001922489169F.png" /></td></tr></table>
+
+<ul>
+  <li>in [7]: de pagina die wordt verkregen door de link [4] te volgen, maakt het mogelijk om de methode [HelloWorld] van de webservice aan te roepen
+  </li>
+  <li>in [8], het verkregen resultaat: een antwoord XML. Let op de URL [9] van de methode.
+  </li>
+</ul>
+
+<p>Door de voorgaande pagina’s te bestuderen, wordt duidelijk hoe een methode van een webservice wordt aangeroepen en welk type antwoord deze retourneert. Dit maakt het mogelijk om HTTP-clients te schrijven die met de webservice kunnen communiceren. De meeste huidige IDE-programma’s maken het mogelijk om deze client HTTP automatisch te genereren, waardoor de ontwikkelaar deze niet zelf hoeft te schrijven. Dit is met name het geval bij Visual Studio Express.</p>
+<p>Voordat we verdergaan met dit project, gaan we de standaardnaamruimte wijzigen die wordt gebruikt bij het genereren van klassen:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000002D1000000DE54148427.png" width="361" height="111" style="display:inline-block; margin:4px;width:9.539cm;height:2.937cm;" class="odt-zoomable" data-zoom-src="images/10000000000002D1000000DE54148427.png" /></td></tr></table>
+
+<p>Wanneer we de projecteigenschappen selecteren (rechtsklikken op het project / Eigenschappen), zien we in [1] de naam van het project en in [2] de standaardnaamruimte.</p>
+<p>Zodra dit is gebeurd,</p>
+<ul>
+  <li>in [Service1.asmx.cs] wijzigen we de naamruimte van de klasse:
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> System.Web.Services;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> pam_v5</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Service1</span> : System.Web.Services.<span style="color:#2b91af">WebService</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>in [Service.asmx] wijzigen we ook de naamruimte die wordt gebruikt voor de klasse [Service1] (rechtsklikken / opmaak weergeven):
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;%<span style="color:#0000ff">@</span> <span style="color:#a31515">WebService</span> <span style="color:#ff0000">Language</span><span style="color:#0000ff">=&quot;C#&quot;</span> <span style="color:#ff0000">CodeBehind</span><span style="color:#0000ff">=&quot;Service1.asmx.cs&quot;</span> <span style="color:#ff0000">Class</span><span style="color:#0000ff">=&quot;pam_v5.Service1&quot;</span> %&gt;</span></span>
+</code></pre></div>
+
+<p>Laten we teruggaan naar de architectuur van onze applicatie:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000065F000000EBD4EC4116.png" width="680" height="98" style="display:inline-block; margin:4px;width:17.997cm;height:2.593cm;" class="odt-zoomable" data-zoom-src="images/100000000000065F000000EBD4EC4116.png" /></td></tr></table>
+
+<ul>
+  <li>de laag [S] is de webservice. Deze laag beperkt zich tot het beschikbaar stellen van de methoden van de laag [metier] aan externe clients. Dit is de laag die we momenteel aan het bouwen zijn.
+  </li>
+  <li>De laag [C] is de client HTTP van de webservice. Dit is de laag die de IDE automatisch kunnen genereren.
+  </li>
+  <li>De laag [web] beschouwt de laag [C] als een lokale laag [metier], mits ervoor wordt gezorgd dat de laag [C] deinterface van de externe laag [metier] implementeert.
+  </li>
+</ul>
+
+<p>Hieronder zien we dat onze webservice:</p>
+<ul>
+  <li>de methoden van de laag [metier] beschikbaar stelt
+  </li>
+  <li>met deze laag communiceren, die op haar beurt weer zal communiceren met de laag [dao].
+  </li>
+</ul>
+
+<p>Het project moet dus gebruikmaken van de DLL van de lagen [metier] en [dao]. Het ontwikkelt zich als volgt:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000003520000017B53D051F3.png" width="425" height="190" style="display:inline-block; margin:4px;width:11.245cm;height:5.015cm;" class="odt-zoomable" data-zoom-src="images/10000000000003520000017B53D051F3.png" /></td></tr></table>
+
+<ul>
+  <li>naar [1], er worden verwijzingen naar het project toegevoegd
+  </li>
+  <li>in [2] worden de gebruikelijke DLL-bestanden uit de map [lib] geselecteerd. Er moet op worden gelet dat ze allemaal de eigenschap &quot;Lokale kopie&quot; op <i>True</i> hebben. De geselecteerde DLL-bestanden zijn die welke de lagen [metier] en [dao] implementeren met ondersteuning voor NHibernate.
+  </li>
+</ul>
+
+<p>Een webapplicatie van het type &quot;ASP.NET-webservice&quot; kan een globale applicatieklasse &quot;Global.asax&quot; hebben, net als een klassieke &quot;ASP.NET-website&quot;. We hebben het nut van een dergelijke klasse gezien:</p>
+<ul>
+  <li>deze wordt bij het opstarten van de applicatie geïnstantieerd en blijft in het geheugen
+  </li>
+  <li>daardoor kan ze gegevens opslaan die door alle clients worden gedeeld en die alleen-lezen zijn. In onze applicatie zal ze, net als in de vorige, de vereenvoudigde lijst met medewerkers opslaan. Dit voorkomt dat deze lijst uit de database moet worden opgehaald wanneer een client erom vraagt.
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005A200000183BB97BA69.png" width="680" height="183" style="display:inline-block; margin:4px;width:17.997cm;height:4.83cm;" class="odt-zoomable" data-zoom-src="images/10000000000005A200000183BB97BA69.png" /></td></tr></table>
+
+<ul>
+  <li>in [1], klik met de rechtermuisknop op het project
+  </li>
+  <li>in [2], kies de optie [Ajouter un nouvel élément]
+  </li>
+  <li>in [3], kies [Classe d&#x27;application globale]
+  </li>
+  <li>in [4] is het bestand [Global.asax] aan het project toegevoegd
+  </li>
+</ul>
+
+<p>De inhoud  van het bestand [Global.asax] is als volgt:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;%<span style="color:#0000ff">@</span> <span style="color:#a31515">Application</span> <span style="color:#ff0000">Codebehind</span><span style="color:#0000ff">=&quot;Global.asax.cs&quot;</span> <span style="color:#ff0000">Inherits</span><span style="color:#0000ff">=&quot;pam_v5.Global&quot;</span> <span style="color:#ff0000">Language</span><span style="color:#0000ff">=&quot;C#&quot;</span> %&gt;</span></span>
+</code></pre></div>
+
+<p>De inhoud van het bestand [Global.asax.cs] is als volgt:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> System;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> pam_v5</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Global</span> : System.Web.<span style="color:#2b91af">HttpApplication</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> Application_Start(<span style="color:#0000ff">object</span> sender, <span style="color:#2b91af">EventArgs</span> e)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>Wat moeten we doen in de methode <em>Application_Start</em>? Precies hetzelfde als in de vorige webapplicaties. Laten we teruggaan naar de architectuur van de applicatie en daar de klasse [Global] plaatsen:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006510000013B1BEAAB88.png" width="680" height="132" style="display:inline-block; margin:4px;width:17.997cm;height:3.505cm;" class="odt-zoomable" data-zoom-src="images/10000000000006510000013B1BEAAB88.png" /></td></tr></table>
+
+<p>In het bovenstaande schema</p>
+<ul>
+  <li>wordt de klasse [Global] geïnstantieerd wanneer de webservice wordt gestart. Deze blijft in het geheugen zolang de webservice actief is.
+  </li>
+  <li>De klasse [Global] instantiëert de lagen [metier] en [dao] in haar methode [Application_Start]
+  </li>
+  <li>Om de prestaties te verbeteren, slaat de klasse [Global] de vereenvoudigde lijst met medewerkers op in een intern veld. Zij zal de lijst met medewerkers uit dit veld opleveren.
+  </li>
+  <li>De webservice wordt bij elk verzoek van een klant geïnstantieerd. Deze verdwijnt nadat het verzoek is afgehandeld. Hij zal niet rechtstreeks de laag [metier] aanspreken, maar de klasse [Global]. Deze zal de interface van de laag [metier] implementeren.
+  </li>
+</ul>
+
+<p>De klasse [Global] is vergelijkbaar met de klasse die al voor de vorige toepassingen is gebouwd:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> System;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Pam.Dao.Entites;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Pam.Metier.Entites;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Pam.Metier.Service;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Spring.Context.Support;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> pam_v5</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Global</span> : System.Web.<span style="color:#2b91af">HttpApplication</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // --- statische gegevens van de applicatie ---</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#2b91af">Employe</span>[] Employes;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#2b91af">IPamMetier</span> PamMetier = <span style="color:#0000ff">null</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> Application_Start(<span style="color:#0000ff">object</span> sender, <span style="color:#2b91af">EventArgs</span> e)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // instantiëring van de laag [metier]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      PamMetier = <span style="color:#2b91af">ContextRegistry</span>.GetContext().GetObject(<span style="color:#a31515">&quot;pammetier&quot;</span>) <span style="color:#0000ff">as</span> <span style="color:#2b91af">IPamMetier</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // de vereenvoudigde lijst met medewerkers wordt opgehaald </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Employes = PamMetier.GetAllIdentitesEmployes();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // vereenvoudigde lijst van werknemers</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">static</span> <span style="color:#0000ff">public</span> <span style="color:#2b91af">Employe</span>[] GetAllIdentitesEmployes()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#0000ff">return</span> Employes;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // salaris van een medewerker</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">static</span> <span style="color:#0000ff">public</span> <span style="color:#2b91af">FeuilleSalaire</span> GetSalaire(<span style="color:#0000ff">string</span> SS, <span style="color:#0000ff">double</span> heuresTravaillées, <span style="color:#0000ff">int</span> joursTravailles)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#0000ff">return</span> PamMetier.GetSalaire(SS, heuresTravaillées, joursTravailles);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>De klasse [Global] implementeert de interface [IPamMetier], maar dit wordt niet expliciet vermeld in de declaratie:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Global</span> : System.Web.<span style="color:#2b91af">HttpApplication, IPamMetier</span></span></span>
+</code></pre></div>
+
+<p>De methoden <em>GetAllIdentitesEmployes</em> (regel 24) en <em>GetSalaire</em> (regel 30) zijn namelijk statisch, terwijl de methoden van de interface <em>IPamMetier</em> dat niet zijn. Daarom kan de klasse <em>Global</em> de interface <em>IPamMetier</em> niet implementeren. Bovendien is het niet mogelijk om de methoden <em>GetAllIdentitesEmployes</em> en <em>GetSalaire</em> als niet-statisch te declareren. Deze worden namelijk benaderd via de naam van de klasse en niet via een instantie daarvan.</p>
+<ul>
+  <li>regel 15: de methode <i>Application_Start </i>is vergelijkbaar met die van de klassen [Global] die in eerdere versies zijn behandeld. Deze methode instantiëert de laag [metier] (regel 18) en initialiseert vervolgens (regel 20) de array met werknemers uit regel 12.
+  </li>
+  <li>regel 24: de methode <i>GetAllIdentitesEmployes </i>geeft alleen de array met medewerkers uit regel 12 weer. Dit is het voordeel van het opslaan ervan bij het opstarten van de applicatie.
+  </li>
+  <li>regel 30: de methode <i>GetSalaire </i>roept de gelijknamige methode van de laag [metier] aan.
+  </li>
+</ul>
+
+<p>Om de laag [metier] (regel 18) te instantiëren, maakt de klasse [Global] gebruik van het Spring-framework. Dit framework wordt geconfigureerd door het bestand [Web.config], dat identiek is aan dat van het vorige project: het configureert Spring en NHibernate om de lagen [metier] en [dao] van de webservice te instantiëren.</p>
+<p>Laten we terugkeren naar de architectuur van onze client/server-applicatie:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000066500000156A0DC531E.png" width="680" height="142" style="display:inline-block; margin:4px;width:17.997cm;height:3.759cm;" class="odt-zoomable" data-zoom-src="images/100000000000066500000156A0DC531E.png" /></td></tr></table>
+
+<p>Aan de serverzijde hoeven we nu alleen nog maar de webservice [S] zelf te schrijven. Als we terugkeren naar de architectuur van de applicatie:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006630000017C50B231AF.png" width="680" height="158" style="display:inline-block; margin:4px;width:17.997cm;height:4.182cm;" class="odt-zoomable" data-zoom-src="images/10000000000006630000017C50B231AF.png" /></td></tr></table>
+
+<p>zien we dat aan de serverzijde alle lagen die voorafgaan aan de laag [metier] de interface daarvan, <em>IPamMetier</em>, implementeren. Dit is niet verplicht, maar het is een logische aanpak. Deze redenering kan ook aan de clientzijde worden toegepast, op de client [C] van de webservice [S]. Zo implementeren alle lagen die de laag [web] van de laag [metier] scheiden, de interface <em>IPamMetier</em>. We kunnen dus stellen dat we zijn teruggekeerd naar een drielaagse applicatie:</p>
+<ul>
+  <li>de presentatielaag [web] [1]
+  </li>
+  <li>de laag [metier] [2]
+  </li>
+  <li>de gegevenslaag [3]
+  </li>
+</ul>
+
+<p>De implementatie van de webservice [Service1.asmx.cs] zou als volgt kunnen zijn:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> System.Web.Services;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Pam.Dao.Entites;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Pam.Metier.Entites;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Pam.Metier.Service;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> pam_v5</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  [<span style="color:#2b91af">WebService</span>(Namespace = <span style="color:#a31515">&quot;http://st.istia.univ-angers.fr/&quot;</span>)]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  [<span style="color:#2b91af">WebServiceBinding</span>(ConformsTo = <span style="color:#2b91af">WsiProfiles</span>.BasicProfile1_1)]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  [System.ComponentModel.<span style="color:#2b91af">ToolboxItem</span>(<span style="color:#0000ff">false</span>)]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Service1</span> : System.Web.Services.<span style="color:#2b91af">WebService</span>, <span style="color:#2b91af">IPamMetier</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // lijst met alle identiteitsgegevens van de werknemers </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    [<span style="color:#2b91af">WebMethod</span>]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#2b91af">Employe</span>[] GetAllIdentitesEmployes()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#0000ff">return</span> <span style="color:#2b91af">Global</span>.GetAllIdentitesEmployes();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // ------- de salarisberekening </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    [<span style="color:#2b91af">WebMethod</span>]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#2b91af">FeuilleSalaire</span> GetSalaire(<span style="color:#0000ff">string</span> ss, <span style="color:#0000ff">double</span> heuresTravaillees, <span style="color:#0000ff">int</span> joursTravailles)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#0000ff">return</span> <span style="color:#2b91af">Global</span>.GetSalaire(ss, heuresTravaillees, joursTravailles);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>regel 8: de klasse is geannoteerd met het attribuut [WebService] en we geven de naamruimte van de webservice een naam
+  </li>
+  <li>regel 11: de klasse [Service1] erft van de klasse [WebService] en implementeert de interface [IPamMetier]
+  </li>
+  <li>regels 15 en 22: elke methode van de klasse is geannoteerd met het attribuut [WebMethod] om beschikbaar te zijn voor externe clients. Standaard zijn alle openbare methoden van een webservice beschikbaar. De attributen in de regels 15 en 22 zijn hier dus optioneel. Om de interface [IPamMetier] te implementeren, hoeft elke methode alleen maar de gelijknamige methode van de klasse [Global] aan te roepen.
+  </li>
+</ul>
+
+<p>We zijn klaar om de webservice uit te voeren:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006390000016419119FC6.png" width="680" height="152" style="display:inline-block; margin:4px;width:17.997cm;height:4.022cm;" class="odt-zoomable" data-zoom-src="images/10000000000006390000016419119FC6.png" /></td></tr></table>
+
+<ul>
+  <li>in [1] wordt het project opnieuw gegenereerd
+  </li>
+  <li>in [2] selecteren we de webservice [Service1.asmx] en geven we deze weer in de browser [3]
+  </li>
+  <li>in [4], de weergegeven webpagina. Hierop staan de methoden van de webservice.
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005FB00000240EBD02E3D.png" width="680" height="256" style="display:inline-block; margin:4px;width:17.997cm;height:6.77cm;" class="odt-zoomable" data-zoom-src="images/10000000000005FB00000240EBD02E3D.png" /></td></tr></table>
+
+<ul>
+  <li>in [4] volgen we de link [GetAllIdentitesEmployes] en komen we in [5] op de testpagina van deze methode terecht.
+  </li>
+  <li>in [6], de URL van de methode
+  </li>
+  <li>in [7], de knop [Appeler] waarmee de methode kan worden getest. Deze methode vereist geen parameters.
+  </li>
+  <li>in [8], het XML-resultaat dat door de webservice wordt teruggestuurd. Hierin zijn alleen de eigenschappen <i>SS</i>, <i>Nom</i>, <i>Prenom </i>van de objecten <i>Employe </i>relevant, omdat de methode [GetAllIdentitesEmployes] alleen om deze eigenschappen vraagt. Deze methode retourneert echter een array van objecten <i>Employe</i>. In [8] zien we dat de numerieke eigenschappen <i>Id </i>en <i>Version </i>in de teruggestuurde XML-stream voorkomen, maar niet de eigenschappen met de waarde <i>null</i>: <i>Adresse</i>, <i>Ville</i>, <i>CodePostal</i>, <i>Indemnites</i>.
+  </li>
+</ul>
+
+<p>We hebben een actieve webservice. We gaan er nu een C#-client voor schrijven. Hiervoor hebben we de URI nodig uit het bestand WSDL van de webservice. We vinden deze op de pagina die aanvankelijk wordt weergegeven bij het uitvoeren van [Service.asmx]:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000002C5000001FD281167BC.png" width="355" height="255" style="display:inline-block; margin:4px;width:9.38cm;height:6.735cm;" class="odt-zoomable" data-zoom-src="images/10000000000002C5000001FD281167BC.png" /></td></tr></table>
+
+<ul>
+  <li>in [1], het URI van de webservice
+  </li>
+  <li>in [2], de link die naar het bijbehorende bestand leidt WSDL
+  </li>
+  <li>naar [3], de waarde van deze link
+  </li>
+</ul>
+
+<h2 id="93-het-c-project-van-een-client-nunit-van-de-webservice">9.3. <span style="color: #4f81bd"><strong>Het C#-project van een client NUnit van de webservice</strong></span></h2>
+<p>We maken een C#-project (met Visual C# en niet met Visual Web Developer) voor de webdienstclient. Dit wordt een testclient NUnit. Het project krijgt dus het type „klassenbibliotheek”.</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006020000016560980782.png" width="680" height="158" style="display:inline-block; margin:4px;width:17.997cm;height:4.177cm;" class="odt-zoomable" data-zoom-src="images/10000000000006020000016560980782.png" /></td></tr></table>
+
+<ul>
+  <li>In [1] maken we een C#-project van het type &quot;klassenbibliotheek&quot;
+  </li>
+  <li>in [2] geven we het project een naam
+  </li>
+  <li>in [3]: het project. We verwijderen [Class1.cs].
+  </li>
+  <li>in [4], het nieuwe project.
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000041F000000C1CD8525CF.png" width="528" height="97" style="display:inline-block; margin:4px;width:13.958cm;height:2.554cm;" class="odt-zoomable" data-zoom-src="images/100000000000041F000000C1CD8525CF.png" /></td></tr></table>
+
+<ul>
+  <li>in de projecteigenschappen, op het tabblad [Application] [5], stellen we de naamruimte van het project in. Elke klasse die door de IDE wordt gegenereerd, zal in deze naamruimte worden geplaatst.
+  </li>
+</ul>
+
+<p>We slaan ons nieuwe project op een geschikte locatie op:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000111000000438B2A1320.png" width="191" height="47" style="display:inline-block; margin:4px;width:5.061cm;height:1.24cm;" class="odt-zoomable" data-zoom-src="images/1000000000000111000000438B2A1320.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
+
+<p>Zodra dit is gebeurd, genereren we de client voor de externe webservice. Om te begrijpen wat we gaan doen, moeten we terugkeren naar de client/server-architectuur die we aan het opbouwen zijn:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006720000016738878E87.png" width="680" height="148" style="display:inline-block; margin:4px;width:17.997cm;height:3.916cm;" class="odt-zoomable" data-zoom-src="images/10000000000006720000016738878E87.png" /></td></tr></table>
+
+<p>De IDE genereert de clientlaag [C] op basis van de URI uit het bestand WSDL van de webservice [S]. Ter herinnering: de URI van dit bestand is eerder genoteerd. We gaan als volgt te werk met de<span id="v10-generation-client-serviceweb1" name="v10-generation-client-serviceweb1" class="odt-bookmark-anchor"></span> :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000065B000001572059E0CC.png" width="680" height="143" style="display:inline-block; margin:4px;width:17.997cm;height:3.794cm;" class="odt-zoomable" data-zoom-src="images/100000000000065B000001572059E0CC.png" /></td></tr></table>
+
+<ul>
+  <li>naar [1], klik met de rechtermuisknop op de tak <i>References </i>en voeg een <i>serviceverwijzing</i> toe
+  </li>
+  <li>in [2], geef de URL aan van het bestand WSDL van de eerder genoteerde webservice. Deze moet eerst worden gestart als dat nog niet is gebeurd.
+  </li>
+  <li>in [3], vraag om de webservice te detecteren via het bijbehorende bestand WSDL
+  </li>
+  <li>in [4], de ontdekte webservice
+  </li>
+  <li>in [5], de methoden die door de webservice worden aangeboden.
+  </li>
+  <li>in [6], de naamruimte waarin de klassen en interfaces van de te genereren client moeten worden geplaatst.
+  </li>
+  <li>we bevestigen de wizard
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006310000021FADA7D792.png" width="680" height="233" style="display:inline-block; margin:4px;width:17.997cm;height:6.165cm;" class="odt-zoomable" data-zoom-src="images/10000000000006310000021FADA7D792.png" /></td></tr></table>
+
+<p><span id="v10-servicesoapclient1" name="v10-servicesoapclient1" class="odt-bookmark-anchor"></span></p>
+<ul>
+  <li>in [1], de gegenereerde client- . We dubbelklikken erop om toegang te krijgen tot de inhoud.
+  </li>
+  <li>In [2] worden in de objectverkenner de klassen en interfaces van de naamruimte <i>Client.WsPam </i>weergegeven. Dit is de naamruimte van de gegenereerde client.
+  </li>
+  <li>In [3] staat de klasse die de webdienstclient implementeert.
+  </li>
+  <li>In [4] staan de methoden die door de client [Service1SoapClient] worden geïmplementeerd. Hierin bevinden zich de twee methoden van de externe webservice [5] en [6].
+  </li>
+  <li>In [2] staan de afbeeldingen van de entiteiten van de lagen:
+    <ul>
+      <li>[metier]: <i>FeuilleSalaire</i>, <i>ElementsSalaire</i>
+      </li>
+      <li>[dao]: <i>Employe</i>, <i>Cotisations</i>, <i>Indemnites</i>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Verder moet u er rekening mee houden dat deze afbeeldingen van externe entiteiten zich aan de clientzijde bevinden en in de naamruimte <em>PamV5Client.WsPam</em>.</p>
+<p>Laten we eens kijken naar de methoden en eigenschappen die door een van deze afbeeldingen worden blootgesteld:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000003FC0000027A658721C5.png" width="510" height="317" style="display:inline-block; margin:4px;width:13.494cm;height:8.387cm;" class="odt-zoomable" data-zoom-src="images/10000000000003FC0000027A658721C5.png" /></td></tr></table>
+
+<ul>
+  <li>in [1] selecteren we de lokale klasse [Employe]
+  </li>
+  <li>in [2] vinden we de eigenschappen van de externe entiteit [Employe] terug, evenals privévelden die worden gebruikt voor de eigen behoeften van de lokale entiteit. 
+  </li>
+</ul>
+
+<p>Laten we teruggaan naar onze C#-toepassing. We voegen er een testklasse NUnit aan toe:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005C30000019F017880A6.png" width="680" height="191" style="display:inline-block; margin:4px;width:17.997cm;height:5.064cm;" class="odt-zoomable" data-zoom-src="images/10000000000005C30000019F017880A6.png" /></td></tr></table>
+
+<ul>
+  <li>in [1] is de klasse [NUnit] toegevoegd. De klasse [NUnit] heeft het framework NUnit nodig en dus een verwijzing naar de klasse DLL daaruit. We gaan er hier vanuit dat het framework NUnit op de computer is geïnstalleerd (http://nunit.org/).
+  </li>
+  <li>In [2] voegen we een verwijzing toe aan het project
+  </li>
+  <li>in het tabblad [3]. In NET, dat de op de computer opgeslagen DLL-bestanden verzamelt, selecteren we [4], de DLL en [nunit.framework] met minimale versie 2.4.6.
+  </li>
+</ul>
+
+<p>Daarnaast gaan we Spring gebruiken om de lokale client [C] van de webservice [S] te instantiëren:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000068500000177114EA989.png" width="680" height="153" style="display:inline-block; margin:4px;width:17.997cm;height:4.043cm;" class="odt-zoomable" data-zoom-src="images/100000000000068500000177114EA989.png" /></td></tr></table>
+
+<p>De verwijzing naar de DLL van Spring kan worden toegevoegd, net zoals bij het framework NUnit, mits de DLL-bestanden eerder op de computer zijn opgeslagen (http://www.springframework.net/download.html).</p>
+<p>Wij gaan anders te werk. We gebruiken de map [lib] uit eerdere projecten, die de voor Spring benodigde DLL bevatte, en voegen de Spring-referentie toe aan het project:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001D5000000EDBF9AEB8A.png" width="235" height="119" style="display:inline-block; margin:4px;width:6.205cm;height:3.136cm;" class="odt-zoomable" data-zoom-src="images/10000000000001D5000000EDBF9AEB8A.png" /></td></tr></table>
+
+<p>Laten we nog eens terugkomen op de architectuur van de client die momenteel in ontwikkeling is:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006B40000018AE82310FE.png" width="680" height="156" style="display:inline-block; margin:4px;width:17.997cm;height:4.131cm;" class="odt-zoomable" data-zoom-src="images/10000000000006B40000018AE82310FE.png" /></td></tr></table>
+
+<p>Hierboven zien we dat de testclient [1] gekoppeld is aan een uitgebreide laag [metier] [2]. Deze laag bevat dezelfde methoden als de externe laag [metier]. We kunnen dus de testklasse gebruiken die we al zijn tegengekomen bij het testen van de laag [metier] in het C#-project [pam-metier-dao-nhibernate]: </p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> NUnit.Framework;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Pam.Dao.Entites;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Pam.Metier.Entites;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Pam.Metier.Service;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Spring.Context.Support;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">namespace</span> Pam.Metier.Tests {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    [<span style="color:#2b91af">TestFixture</span>()]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">NunitTestPamMetier</span> : <span style="color:#2b91af">AssertionHelper</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        // de te testen laag [metier] </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">private</span> <span style="color:#2b91af">IPamMetier</span> pamMetier;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        // constructor</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">public</span> NunitTestPamMetier() {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            // instantiëring van laag [dao]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            pamMetier = <span style="color:#2b91af">ContextRegistry</span>.GetContext().GetObject(<span style="color:#a31515">&quot;pammetier&quot;</span>) <span style="color:#0000ff">as</span> <span style="color:#2b91af">IPamMetier</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        [<span style="color:#2b91af">Test</span>]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">void</span> GetAllIdentitesEmployes() {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            // controle aantal werknemers </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            Expect(2, EqualTo(pamMetier.GetAllIdentitesEmployes().Length));</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        [<span style="color:#2b91af">Test</span>]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">void</span> GetSalaire1() {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            // berekening van een loonstrook </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#2b91af">FeuilleSalaire</span> feuilleSalaire = pamMetier.GetSalaire(<span style="color:#a31515">&quot;254104940426058&quot;</span>, 150, 20);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            // controles </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            Expect(368.77, EqualTo(feuilleSalaire.ElementsSalaire.SalaireNet).Within(1E-06));</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            // loonstrook van een niet-bestaande werknemer </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">bool</span> erreur = <span style="color:#0000ff">false</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">try</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                feuilleSalaire = pamMetier.GetSalaire(<span style="color:#a31515">&quot;xx&quot;</span>, 150, 20);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            } <span style="color:#0000ff">catch</span> (<span style="color:#2b91af">PamException</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                erreur = <span style="color:#0000ff">true</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            Expect(erreur, True);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>Er moeten enkele wijzigingen worden aangebracht:</p>
+<ul>
+  <li>op regel 18 wordt de laag [metier] geïnstantieerd met het Spring-framework. De klasse is in beide gevallen niet dezelfde. Hier is de lokale laag [metier] een instantie van de klasse [PamV5Client.WsPam.Service1SoapClient], de klasse die door IDE wordt gegenereerd. Daarom is Spring als volgt geconfigureerd in het bestand [app.config] van het C#-project:
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">&lt;?</span><span style="color:#a31515">xml</span><span style="color:#0000ff"> </span><span style="color:#ff0000">version</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">1.0</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">encoding</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">utf-8</span>&quot;<span style="color:#0000ff"> ?&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">&lt;</span><span style="color:#a31515">configuration</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">configSections</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">        &lt;</span><span style="color:#a31515">sectionGroup</span><span style="color:#0000ff"> </span><span style="color:#ff0000">name</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">spring</span>&quot;<span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">            &lt;</span><span style="color:#a31515">section</span><span style="color:#0000ff"> </span><span style="color:#ff0000">name</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">context</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">type</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">Spring.Context.Support.ContextHandler, Spring.Core</span>&quot;<span style="color:#0000ff"> /&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">            &lt;</span><span style="color:#a31515">section</span><span style="color:#0000ff"> </span><span style="color:#ff0000">name</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">objects</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">type</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">Spring.Context.Support.DefaultSectionHandler, Spring.Core</span>&quot;<span style="color:#0000ff"> /&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">        &lt;/</span><span style="color:#a31515">sectionGroup</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;/</span><span style="color:#a31515">configSections</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">spring</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">        &lt;</span><span style="color:#a31515">context</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">            &lt;</span><span style="color:#a31515">resource</span><span style="color:#0000ff"> </span><span style="color:#ff0000">uri</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">config://spring/objects</span>&quot;<span style="color:#0000ff"> /&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">        &lt;/</span><span style="color:#a31515">context</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">        &lt;</span><span style="color:#a31515">objects</span><span style="color:#0000ff"> </span><span style="color:#ff0000">xmlns</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">http://www.springframework.net</span>&quot;<span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">            &lt;</span><span style="color:#a31515">object</span><span style="color:#0000ff"> </span><span style="color:#ff0000">id</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">pammetier</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">type</span><span style="color:#0000ff">=</span>&quot;<span style="color:#2323dc">PamV5</span><span style="color:#0000ff">Client.WsPam.Service1SoapClient, pam-v5-client-csharp-webservice</span>&quot;<span style="color:#0000ff">/&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">        &lt;/</span><span style="color:#a31515">objects</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;/</span><span style="color:#a31515">spring</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">system.serviceModel</span><span style="color:#0000ff">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+</code></pre></div>
+
+<ul>
+  <li>op regel 16 hierboven is het object [pammetier] een instantie van de klasse [PamV5Client.WsPam.Service1SoapClient] die zich in de assembly [pam-v5-client-csharp-webservice] bevindt. Om de eerste informatie te verkrijgen, volstaat het om terug te gaan naar de definitie van de klasse [Service1SoapClient] in de objectverkenner (paragraaf<a href="#client-csharp-webservice"><u><span style="color: #0563c1"> 9.3</span></u></a>):
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000053200000222F940039B.png" width="665" height="273" style="display:inline-block; margin:4px;width:17.595cm;height:7.223cm;" class="odt-zoomable" data-zoom-src="images/100000000000053200000222F940039B.png" /></td></tr></table>
+
+<ul>
+  <li>in [2], de implementatieklasse van de lokale laag [metier], en in [1] de naamruimte
+  </li>
+  <li>in [3], in de projecteigenschappen, de naam van de assembly, de tweede vereiste informatie voor de configuratie van het Spring-object [pammetier].
+  </li>
+</ul>
+
+<p>Laten we teruggaan naar de code voor het instantiëren van de lokale laag [metier] in [NUnit.cs]:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<span class="odt-code-line"><span class="odt-code-line-content">        // de te testen laag [metier] </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">private</span> <span style="color:#2b91af">IPamMetier</span> pamMetier;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        // constructor</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">public</span> NunitTestPamMetier() {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            // instantie van laag [dao]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            pamMetier = <span style="color:#2b91af">ContextRegistry</span>.GetContext().GetObject(<span style="color:#a31515">&quot;pammetier&quot;</span>) <span style="color:#0000ff">as</span> <span style="color:#2b91af">IPamMetier</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+</code></pre></div>
+
+<p>Regel 7: de externe laag [metier] was van het type <em>IPamMetier</em>. Hier is de laag [metier] van het type [Service1SoapClient]:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">public class </span><span style="font-weight:bold;color:#000000">Service1SoapClient</span><span style="color:#000000"> : </span><span style="font-weight:bold;text-decoration:underline;color:#215dc6">System.ServiceModel.ClientBase&lt;Service1Soap&gt;</span></span></span>
+</code></pre></div>
+
+<p>We zien dat de klasse <em>Service1SoapClient</em> de interface <em>IPamMetier</em> niet implementeert, ook al biedt ze methoden met dezelfde naam aan. We moeten de instantiëring van de lokale laag [metier] dus als volgt schrijven:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000">// de te testen laag [metier] </span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">private</span> <span style="color:#2b91af">Service1SoapClient</span> pamMetier;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        // constructor</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">public</span> NunitTestPamMetier() {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            // instantie van de laag [metier]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            pamMetier = <span style="color:#2b91af">ContextRegistry</span>.GetContext().GetObject(<span style="color:#a31515">&quot;pammetier&quot;</span>) <span style="color:#0000ff">as</span> <span style="color:#2b91af">Service1SoapClient</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>Een andere wijziging die moet worden aangebracht:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">        [<span style="color:#2b91af">Test</span>]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">void</span> GetSalaire1() {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">try</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                feuilleSalaire = pamMetier.GetSalaire(<span style="color:#a31515">&quot;xx&quot;</span>, 150, 20);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            } <span style="color:#0000ff">catch</span> (<span style="color:#2b91af">PamException</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                erreur = <span style="color:#0000ff">true</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            Expect(erreur, True);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+</code></pre></div>
+
+<p>De bovenstaande code gebruikt in regel 6 het type <em>PamException</em>, dat aan de clientzijde niet bestaat. We vervangen dit door de bovenliggende klasse, het type <em>Exception</em>. </p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">        [<span style="color:#2b91af">Test</span>]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">void</span> GetSalaire1() {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">try</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                feuilleSalaire = pamMetier.GetSalaire(<span style="color:#a31515">&quot;xx&quot;</span>, 150, 20);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            } <span style="color:#0000ff">catch</span> (<span style="color:#2b91af">Exception</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                erreur = <span style="color:#0000ff">true</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            Expect(erreur, True);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+</code></pre></div>
+
+<p>Ten slotte zijn de geïmporteerde naamruimten niet meer dezelfde:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> System;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> PamV5Client.WsPam;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> NUnit.Framework;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">using</span> Spring.Context.Support;</span></span>
+</code></pre></div>
+
+<p>Nu dit is gebeurd, kan het project van het type &quot;Klassebibliotheek&quot; worden gegenereerd. Het volgende bestand DLL wordt aangemaakt:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000059B00000151C46311D1.png" width="680" height="160" style="display:inline-block; margin:4px;width:17.997cm;height:4.226cm;" class="odt-zoomable" data-zoom-src="images/100000000000059B00000151C46311D1.png" /></td></tr></table>
+
+<ul>
+  <li>in [1], de map [bin/Release] van het C#-project
+  </li>
+  <li>in [2], de DLL van het project.
+  </li>
+</ul>
+
+<p>De test NUnit wordt vervolgens uitgevoerd door het framework NUnit (de basis MySQL <em>dbpam_nhibernate</em> moet actief zijn voor de test):</p>
+<ul>
+  <li>in [3] en [4] wordt de DLL [2] geladen in de testtoepassing NUnit
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006010000013BE03C9519.png" width="680" height="139" style="display:inline-block; margin:4px;width:17.997cm;height:3.688cm;" class="odt-zoomable" data-zoom-src="images/10000000000006010000013BE03C9519.png" /></td></tr></table>
+
+<ul>
+  <li>in [5] wordt de testklasse geselecteerd en uitgevoerd [6]
+  </li>
+  <li>in [7], de resultaten van een geslaagde test
+  </li>
+</ul>
+
+<p>We hebben nu een werkende webservice.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Deze cursus-tutorial, geschreven door <strong>Serge Tahé</strong>, wordt aan het publiek ter beschikking gesteld onder de voorwaarden van de
+        <em>Creative Commons Naamsvermelding – Geen commercieel gebruik –
+        Gelijk delen 3.0 ongewijzigd</em>.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
